@@ -22,9 +22,9 @@ import java.util.ArrayList;
 public class EcoSystem extends Organization{
     
     private static EcoSystem business;
-    private RestaurantDirectory restaurantDirectory;
-    private CustomerDirectory customerDirectory;
-    private DeliveryManDirectory deliveryManDirectory;
+    private RestaurantDirectory restaurantDirectory = new RestaurantDirectory();
+    private CustomerDirectory customerDirectory = new CustomerDirectory();
+    private DeliveryManDirectory deliveryManDirectory = new DeliveryManDirectory();
     
     public void addCustomer(Customer c){
         customerDirectory.addCustomer(c);

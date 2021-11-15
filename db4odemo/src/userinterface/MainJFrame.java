@@ -70,7 +70,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Role.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Customer", "Restaurant", "Admin"}));
+        Role.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Customer", "Restaurant", "Delivery-Man","Admin"}));
         Role.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RoleActionPerformed(evt);
@@ -158,9 +158,9 @@ public class MainJFrame extends javax.swing.JFrame {
     private void RoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RoleActionPerformed
         // TODO add your handling code here:
         System.out.println(Role.getSelectedItem().toString());
-        if(Role.getSelectedItem().toString() == "Admin"){
+        if (Role.getSelectedItem().toString() == "Admin") {
             btnSignUp.setEnabled(false);
-        }else{
+        } else {
             btnSignUp.setEnabled(true);
         }
     }//GEN-LAST:event_RoleActionPerformed
@@ -179,11 +179,33 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
         // TODO add your handling code here:
+
+        if (Role.getSelectedItem().toString() == "Customer") {
+            SignUpCustomer suc = new SignUpCustomer(system);
+            this.setContentPane(suc);
+            this.invalidate();
+            this.validate();
+            return;
+
+        }
+        if (Role.getSelectedItem().toString() == "Restaurant") {
+            SignUpRestaurant sur = new SignUpRestaurant(system);
+            this.setContentPane(sur);
+            this.invalidate();
+            this.validate();
+            return;
+
+        }
         
-        SignUpCustomer suc = new SignUpCustomer(system);
-        this.setContentPane(suc);
-        this.invalidate();
-        this.validate();
+        if (Role.getSelectedItem().toString() == "Delivery-Man") {
+            SignUpDeliveryMan sud = new SignUpDeliveryMan(system);
+            this.setContentPane(sud);
+            this.invalidate();
+            this.validate();
+            return;
+
+        }
+
 
     }//GEN-LAST:event_btnSignUpActionPerformed
 

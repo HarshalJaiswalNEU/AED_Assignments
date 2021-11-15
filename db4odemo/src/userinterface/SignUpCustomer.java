@@ -4,6 +4,10 @@
  */
 package userinterface;
 
+import Business.Customer.Address;
+import Business.Customer.Customer;
+import Business.EcoSystem;
+import Business.Role.CustomerRole;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
@@ -29,9 +33,11 @@ public class SignUpCustomer extends javax.swing.JPanel {
     /**
      * Creates new form SignUpCustomer
      */
-    public SignUpCustomer() {
+    EcoSystem e;
+    public SignUpCustomer(EcoSystem e) {
         initComponents();
         labImg.setIcon(setIcon("/Users/harshaljaiswal/Downloads/db4odemo/cust.jpeg"));
+        this.e = e;
     }
 
     /**
@@ -49,7 +55,7 @@ public class SignUpCustomer extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         txtUsrName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        pass = new javax.swing.JPasswordField();
+        txtPass = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtStreet = new javax.swing.JTextField();
@@ -169,7 +175,7 @@ public class SignUpCustomer extends javax.swing.JPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txtFullName, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtUsrName, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(pass, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtPass, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtState, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -198,7 +204,7 @@ public class SignUpCustomer extends javax.swing.JPanel {
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -253,8 +259,10 @@ public class SignUpCustomer extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        Address add =new Address(txtStreet.getText(), Integer.parseInt(txtAptNo.getText()), txtCity.getText(), txtState.getText(), Integer.parseInt(txtZip.getText()));
         
-        
+        Customer c =new Customer(txtUsrName.getText(), txtPass.getText(), new CustomerRole(), txtFullName.getText(), add);
+        e.addCustomer(c);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -271,10 +279,10 @@ public class SignUpCustomer extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel labImg;
-    private javax.swing.JPasswordField pass;
     private javax.swing.JTextField txtAptNo;
     private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtFullName;
+    private javax.swing.JPasswordField txtPass;
     private javax.swing.JTextField txtState;
     private javax.swing.JTextField txtStreet;
     private javax.swing.JTextField txtUsrName;

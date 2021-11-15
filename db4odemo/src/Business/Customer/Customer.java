@@ -5,10 +5,45 @@
  */
 package Business.Customer;
 
+import Business.Role.Role;
+import Business.UserAccount.UserAccount;
+
 /**
  *
  * @author harold
  */
-public class Customer {
+public class Customer extends UserAccount{
+    
+    private String name;
+    private Address address;
+    
+    /**
+     *
+     */
+    public Customer(String usr, String pass, Role r, String name, Address add){
+        
+        super(usr, pass, r);
+        this.name = name;
+        this.address = add;
+    }
+    
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String Name) {
+        this.name = Name;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+    
+    
     
 }

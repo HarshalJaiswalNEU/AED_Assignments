@@ -6,6 +6,7 @@ package userinterface;
 
 import Business.Customer.Address;
 import Business.Customer.Customer;
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Role.CustomerRole;
 import java.awt.Image;
@@ -36,10 +37,12 @@ public class SignUpCustomer extends javax.swing.JPanel {
      * Creates new form SignUpCustomer
      */
     EcoSystem e;
-    public SignUpCustomer(EcoSystem e) {
+    private DB4OUtil dB4OUtil;
+    public SignUpCustomer(EcoSystem e, DB4OUtil dB4OUtil) {
         initComponents();
         labImg.setIcon(setIcon("/Users/harshaljaiswal/Downloads/db4odemo/cust.jpeg"));
         this.e = e;
+        this.dB4OUtil = dB4OUtil;
     }
 
     /**
@@ -72,6 +75,8 @@ public class SignUpCustomer extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         labImg = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        txtNo = new javax.swing.JPasswordField();
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel1.setText("Sign Up Customer");
@@ -151,6 +156,8 @@ public class SignUpCustomer extends javax.swing.JPanel {
             }
         });
 
+        jLabel11.setText("Contact No.:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -164,39 +171,45 @@ public class SignUpCustomer extends javax.swing.JPanel {
                         .addGap(111, 111, 111)
                         .addComponent(labImg, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(168, 168, 168)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel9)))
-                        .addGap(43, 43, 43)
+                        .addGap(149, 149, 149)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel9)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel11))
+                                .addGap(7, 7, 7)))
+                        .addGap(55, 55, 55)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(48, 48, 48)
                                 .addComponent(jButton1))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtNo, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(txtAptNo, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(jLabel8)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(txtCity))
-                                .addComponent(txtFullName)
-                                .addComponent(txtUsrName)
-                                .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtFullName, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtUsrName, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(txtState, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(jLabel10)
                                     .addGap(18, 18, 18)
                                     .addComponent(txtZip, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(txtStreet, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(txtStreet, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtPass, javax.swing.GroupLayout.Alignment.LEADING)))))
                 .addContainerGap(136, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -210,15 +223,19 @@ public class SignUpCustomer extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtUsrName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
                     .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(txtNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -240,7 +257,7 @@ public class SignUpCustomer extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -276,8 +293,10 @@ public class SignUpCustomer extends javax.swing.JPanel {
         // TODO add your handling code here:
         Address add =new Address(txtStreet.getText(), Integer.parseInt(txtAptNo.getText()), txtCity.getText(), txtState.getText(), Integer.parseInt(txtZip.getText()));
         
-        Customer c =new Customer(txtUsrName.getText(), txtPass.getText(), new CustomerRole(), txtFullName.getText(), add);
+        Customer c =new Customer(txtUsrName.getText(), txtPass.getText(), new CustomerRole(),txtNo.getText(), txtFullName.getText(), add);
         e.addCustomer(c);
+        
+        dB4OUtil.storeSystem(e);
         
         MainJFrame suc = new MainJFrame();
         ((JFrame) SwingUtilities.getWindowAncestor(this)).dispose();
@@ -298,6 +317,7 @@ public class SignUpCustomer extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -310,6 +330,7 @@ public class SignUpCustomer extends javax.swing.JPanel {
     private javax.swing.JTextField txtAptNo;
     private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtFullName;
+    private javax.swing.JPasswordField txtNo;
     private javax.swing.JPasswordField txtPass;
     private javax.swing.JTextField txtState;
     private javax.swing.JTextField txtStreet;

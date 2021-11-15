@@ -6,6 +6,7 @@ package userinterface;
 
 import Business.Customer.Address;
 import Business.Customer.Customer;
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -36,10 +37,12 @@ public class SignUpDeliveryMan extends javax.swing.JPanel {
      */
    
     EcoSystem e;
-    public SignUpDeliveryMan(EcoSystem e) {
+    DB4OUtil dB4OUtil;
+    public SignUpDeliveryMan(EcoSystem e, DB4OUtil dB4OUtil) {
         initComponents();
         labImg.setIcon(setIcon("/Users/harshaljaiswal/Downloads/db4odemo/deli.jpg"));
         this.e = e;
+        this.dB4OUtil = dB4OUtil;
     }
 
     /**

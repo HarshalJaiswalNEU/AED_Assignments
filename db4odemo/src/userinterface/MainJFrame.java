@@ -168,20 +168,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
-        if (txtUsername.getText().matches("jaiswal.ha") && txtPassword.getText().matches("test123")) {
-
-            JOptionPane.showMessageDialog(this, "Correct credential");
-        } else {
-            JOptionPane.showMessageDialog(this, "Incorrect credential");
-        }
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
-        // TODO add your handling code here:
-
         if (Role.getSelectedItem().toString() == "Customer") {
-            SignUpCustomer suc = new SignUpCustomer(system);
+            SignUpCustomer suc = new SignUpCustomer(system, dB4OUtil);
             this.setContentPane(suc);
             this.invalidate();
             this.validate();
@@ -189,16 +177,60 @@ public class MainJFrame extends javax.swing.JFrame {
 
         }
         if (Role.getSelectedItem().toString() == "Restaurant") {
-            SignUpRestaurant sur = new SignUpRestaurant(system);
+            SignUpRestaurant sur = new SignUpRestaurant(system, dB4OUtil);
             this.setContentPane(sur);
             this.invalidate();
             this.validate();
             return;
 
         }
-        
+
         if (Role.getSelectedItem().toString() == "Delivery-Man") {
-            SignUpDeliveryMan sud = new SignUpDeliveryMan(system);
+            SignUpDeliveryMan sud = new SignUpDeliveryMan(system, dB4OUtil);
+            this.setContentPane(sud);
+            this.invalidate();
+            this.validate();
+            return;
+
+        }
+
+        if (Role.getSelectedItem().toString() == "Admin") {
+            if (txtUsername.getText().matches("a") && txtPassword.getText().matches("a")) {
+                AdminPage ap = new AdminPage(system, dB4OUtil);
+                this.setContentPane(ap);
+                this.invalidate();
+                this.validate();
+                return;
+            } else {
+                JOptionPane.showMessageDialog(this, "Incorrect credential");
+            }
+        }
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
+        // TODO add your handling code here:
+
+        if (Role.getSelectedItem().toString() == "Customer") {
+            SignUpCustomer suc = new SignUpCustomer(system, dB4OUtil);
+            this.setContentPane(suc);
+            this.invalidate();
+            this.validate();
+            return;
+
+        }
+        if (Role.getSelectedItem().toString() == "Restaurant") {
+            SignUpRestaurant sur = new SignUpRestaurant(system, dB4OUtil);
+            this.setContentPane(sur);
+            this.invalidate();
+            this.validate();
+            return;
+
+        }
+
+        if (Role.getSelectedItem().toString() == "Delivery-Man") {
+            SignUpDeliveryMan sud = new SignUpDeliveryMan(system, dB4OUtil);
             this.setContentPane(sud);
             this.invalidate();
             this.validate();

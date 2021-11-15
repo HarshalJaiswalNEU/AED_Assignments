@@ -5,10 +5,56 @@
  */
 package Business.Restaurant;
 
+import Business.Customer.Address;
+import Business.Role.Role;
+import Business.UserAccount.UserAccount;
+import java.util.ArrayList;
+
 /**
  *
  * @author harold
  */
-public class Restaurant {
+public class Restaurant extends UserAccount {
+
+    private String name;
+    private Address address;
+    private ArrayList<Menu> menu = new ArrayList<>();
     
+    public Restaurant(String usr, String pass, Role r,String contactNo, String n, Address a) {
+        super(usr, pass, r, contactNo);
+        this.name = n;
+        this.address = a;
+
+    }
+    
+    public void AddMenu(Menu m){
+        menu.add(m);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public ArrayList<Menu> getMenu() {
+        return menu;
+    }
+
+    public void setMenu(ArrayList<Menu> menu) {
+        this.menu = menu;
+    }
+
+    
+
 }

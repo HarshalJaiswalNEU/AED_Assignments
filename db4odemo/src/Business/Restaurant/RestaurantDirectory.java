@@ -5,14 +5,30 @@
  */
 package Business.Restaurant;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author harold
  */
 public class RestaurantDirectory {
+    
+    private ArrayList<Restaurant> restaurents = new ArrayList<>();
+    
+    public RestaurantDirectory(){
+        
+    }
 
     public void addRestaurant(Restaurant r) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        restaurents.add(r);
+    }
+
+    public ArrayList<Restaurant> getRestaurents() {
+        return restaurents;
+    }
+
+    public void setRestaurents(ArrayList<Restaurant> restaurents) {
+        this.restaurents = restaurents;
     }
     
 }

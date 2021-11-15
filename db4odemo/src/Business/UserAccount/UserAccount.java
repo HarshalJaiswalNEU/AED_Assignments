@@ -17,11 +17,21 @@ public class UserAccount {
     private String username;
     private String password;
     private Role role;
+    private String contactNo;
 
-    public UserAccount(String usr, String pass, Role r) {
+    public UserAccount(String usr, String pass, Role r, String contactNo) {
         this.username = usr;
         this.password = pass;
         this.role = r;
+        this.contactNo = contactNo;
+    }
+
+    public String getContactNo() {
+        return contactNo;
+    }
+
+    public void setContactNo(String contactNo) {
+        this.contactNo = contactNo;
     }
     
     public String getUsername() {

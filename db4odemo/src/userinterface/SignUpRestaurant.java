@@ -6,7 +6,9 @@ package userinterface;
 
 import Business.Customer.Address;
 import Business.Customer.Customer;
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
+import Business.Restaurant.Restaurant;
 import Business.Role.CustomerRole;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -20,6 +22,7 @@ import javax.swing.SwingUtilities;
 public class SignUpRestaurant extends javax.swing.JPanel {
 
     EcoSystem e;
+     DB4OUtil dB4OUtil;
     
     ImageIcon myImage;
 
@@ -38,10 +41,11 @@ public class SignUpRestaurant extends javax.swing.JPanel {
      * Creates new form SignUpRestaurant
      * @param e
      */
-    public SignUpRestaurant(EcoSystem e) {
+    public SignUpRestaurant(EcoSystem e,  DB4OUtil dB4OUtil) {
         initComponents();
         labImg.setIcon(setIcon("/Users/harshaljaiswal/Downloads/db4odemo/rest.jpg"));
         this.e =e;
+        this.dB4OUtil =dB4OUtil;
     }
 
     /**
@@ -74,6 +78,8 @@ public class SignUpRestaurant extends javax.swing.JPanel {
         txtZip = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        txtNo = new javax.swing.JPasswordField();
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel1.setText("Sign Up Restaurant");
@@ -133,6 +139,12 @@ public class SignUpRestaurant extends javax.swing.JPanel {
 
         jLabel10.setText("Zip:");
 
+        txtPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPassActionPerformed(evt);
+            }
+        });
+
         txtZip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtZipActionPerformed(evt);
@@ -152,6 +164,8 @@ public class SignUpRestaurant extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
+
+        jLabel11.setText("Contact No.:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -175,17 +189,22 @@ public class SignUpRestaurant extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel4)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(jLabel5)
-                                                .addComponent(jLabel6)
-                                                .addComponent(jLabel7)
-                                                .addComponent(jLabel9)))
-                                        .addGap(44, 44, 44))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel4)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(jLabel5)
+                                                    .addComponent(jLabel6)
+                                                    .addComponent(jLabel7)
+                                                    .addComponent(jLabel9)))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel11)
+                                                .addGap(3, 3, 3)))
+                                        .addGap(47, 47, 47))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel2))
                                         .addGap(56, 56, 56)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
@@ -196,14 +215,15 @@ public class SignUpRestaurant extends javax.swing.JPanel {
                                         .addComponent(txtCity))
                                     .addComponent(txtFullName)
                                     .addComponent(txtUsrName)
-                                    .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(txtState, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jLabel10)
                                         .addGap(18, 18, 18)
                                         .addComponent(txtZip, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtStreet, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(txtStreet)
+                                    .addComponent(txtPass)
+                                    .addComponent(txtNo))))))
                 .addContainerGap(89, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -217,17 +237,21 @@ public class SignUpRestaurant extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtUsrName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtStreet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -247,7 +271,7 @@ public class SignUpRestaurant extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -283,9 +307,10 @@ public class SignUpRestaurant extends javax.swing.JPanel {
         // TODO add your handling code here:
         Address add =new Address(txtStreet.getText(), Integer.parseInt(txtAptNo.getText()), txtCity.getText(), txtState.getText(), Integer.parseInt(txtZip.getText()));
 
-        Customer c =new Customer(txtUsrName.getText(), txtPass.getText(), new CustomerRole(), txtFullName.getText(), add);
-        e.addCustomer(c);
-
+//        Customer c =new Customer(txtUsrName.getText(), txtPass.getText(), new CustomerRole(), txtFullName.getText(), add);
+//        e.addCustomer(c);
+        Restaurant r = new Restaurant(txtUsrName.getText(), txtPass.getText(), new CustomerRole(), txtNo.getText(), txtFullName.getText(), add);
+        e.addCRestaurant(r);
         MainJFrame suc = new MainJFrame();
         this.setVisible(false);
         suc.setVisible(true);
@@ -298,12 +323,17 @@ public class SignUpRestaurant extends javax.swing.JPanel {
         suc.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void txtPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPassActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -316,6 +346,7 @@ public class SignUpRestaurant extends javax.swing.JPanel {
     private javax.swing.JTextField txtAptNo;
     private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtFullName;
+    private javax.swing.JPasswordField txtNo;
     private javax.swing.JPasswordField txtPass;
     private javax.swing.JTextField txtState;
     private javax.swing.JTextField txtStreet;

@@ -20,9 +20,9 @@ public class Customer extends UserAccount{
     /**
      *
      */
-    public Customer(String usr, String pass, Role r, String name, Address add){
+    public Customer(String usr, String pass, Role r,String contactNo, String name, Address add){
         
-        super(usr, pass, r);
+        super(usr, pass, r, contactNo);
         this.name = name;
         this.address = add;
     }

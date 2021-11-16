@@ -73,6 +73,14 @@ public class EcoSystem extends Organization{
         this.deliveryManDirectory = deliveryManDirectory;
     }
     
+    public Restaurant findRestaurant(String id) {
+        return restaurantDirectory.findRestaurant(id);
+    }
+    
+    public void removeRestaurant(String usr) {
+        restaurantDirectory.removeRestaurant(usr);
+    }
+    
     public static EcoSystem getInstance(){
         if(business==null){
             business=new EcoSystem();

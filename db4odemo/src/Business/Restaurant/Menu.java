@@ -12,6 +12,8 @@ public class Menu {
     
     private String name;
     private int price;
+
+   
     private String unit;
     private String type;
     private String description; 
@@ -64,5 +66,12 @@ public class Menu {
         this.description = description;
     }
     
+     public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
     
 }

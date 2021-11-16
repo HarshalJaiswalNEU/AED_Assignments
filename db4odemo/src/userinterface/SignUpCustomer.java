@@ -76,7 +76,7 @@ public class SignUpCustomer extends javax.swing.JPanel {
         labImg = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
-        txtNo = new javax.swing.JPasswordField();
+        txtNo = new javax.swing.JTextField();
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel1.setText("Sign Up Customer");
@@ -158,6 +158,12 @@ public class SignUpCustomer extends javax.swing.JPanel {
 
         jLabel11.setText("Contact No.:");
 
+        txtNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -193,7 +199,6 @@ public class SignUpCustomer extends javax.swing.JPanel {
                                 .addGap(48, 48, 48)
                                 .addComponent(jButton1))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtNo, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(txtAptNo, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -209,7 +214,8 @@ public class SignUpCustomer extends javax.swing.JPanel {
                                     .addGap(18, 18, 18)
                                     .addComponent(txtZip, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(txtStreet, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtPass, javax.swing.GroupLayout.Alignment.LEADING)))))
+                                .addComponent(txtPass, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtNo, javax.swing.GroupLayout.Alignment.LEADING)))))
                 .addContainerGap(136, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -311,6 +317,10 @@ public class SignUpCustomer extends javax.swing.JPanel {
         suc.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void txtNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -330,7 +340,7 @@ public class SignUpCustomer extends javax.swing.JPanel {
     private javax.swing.JTextField txtAptNo;
     private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtFullName;
-    private javax.swing.JPasswordField txtNo;
+    private javax.swing.JTextField txtNo;
     private javax.swing.JPasswordField txtPass;
     private javax.swing.JTextField txtState;
     private javax.swing.JTextField txtStreet;

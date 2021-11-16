@@ -164,7 +164,7 @@ public class AddMenuPage extends javax.swing.JPanel {
         
         Menu mm = new Menu(txtName.getText(), Integer.valueOf(txtPrice.getText()), txtUnit.getText(), txtType.getText(), txtDesc.getText());
        
-//        restaurant.AddMenu(mm);
+        restaurant.AddMenu(mm);
         dB4OUtil.storeSystem(e);
 
         populateTable();

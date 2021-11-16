@@ -6,9 +6,8 @@ package userinterface.SystemAdminWorkArea;
 
 import Business.Customer.Customer;
 import Business.DB4OUtil.DB4OUtil;
+import Business.DeliveryMan.DeliveryMan;
 import Business.EcoSystem;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,19 +15,20 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author harshaljaiswal
  */
-public class CustomerDetails extends javax.swing.JPanel {
+public class DeliveryManDetails extends javax.swing.JPanel {
 
     /**
-     * Creates new form CutomerDetails
+     * Creates new form DeliveryManDetails
      */
-   
+    
     EcoSystem e;
     DB4OUtil dB4OUtil;
-    public CustomerDetails(EcoSystem e, DB4OUtil dB4OUtil) {
+    public DeliveryManDetails(EcoSystem e, DB4OUtil dB4OUtil) {
         initComponents();
         this.e = e;
-        populateTable();
+        
         this.dB4OUtil =dB4OUtil;
+        populateTable();
     }
 
     /**
@@ -40,13 +40,17 @@ public class CustomerDetails extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel1.setText("Customer Details");
+        jButton1.setText("Delete");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         tb1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -61,39 +65,34 @@ public class CustomerDetails extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tb1);
 
-        jButton1.setText("Delete");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel1.setText("Delivery Man Details");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(278, 278, 278))
             .addGroup(layout.createSequentialGroup()
+                .addGap(121, 121, 121)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(268, 268, 268)
-                            .addComponent(jLabel1))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(120, 120, 120)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(147, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(29, 29, 29)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(36, 36, 36)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63)
                 .addComponent(jButton1)
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(208, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -106,7 +105,7 @@ public class CustomerDetails extends javax.swing.JPanel {
             return;
         }
         DefaultTableModel model = (DefaultTableModel) tb1.getModel();
-        e.removeCustomer(model.getValueAt(selectedRow, 1).toString());
+        e.removeDeliveryMan(model.getValueAt(selectedRow, 1).toString());
         dB4OUtil.storeSystem(e);
         populateTable();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -118,18 +117,18 @@ public class CustomerDetails extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tb1;
     // End of variables declaration//GEN-END:variables
-    
+
     private void populateTable() {
         DefaultTableModel model = (DefaultTableModel) tb1.getModel();
         model.setRowCount(0);
 
-        for (Customer c : e.getCustomerDirectory().getCustomerList()) {
+        for (DeliveryMan c : e.getDeliveryManDirectory().getDeliveryMans()) {
 
             Object[] row = new Object[4];
             row[0] = c.getName();
             row[1] = c.getUsername();
             row[2] = c.getContactNo();
-            row[3] = c.getAddress().getStreet() + c.getAddress().getApt();
+            row[3] = c.getAccNo();
 
             model.addRow(row);
         }

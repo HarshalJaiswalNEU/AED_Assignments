@@ -8,7 +8,9 @@ package Business;
 
 import Business.Customer.Customer;
 import Business.Customer.CustomerDirectory;
+import Business.DeliveryMan.DeliveryMan;
 import Business.DeliveryMan.DeliveryManDirectory;
+import Business.Orders.OrderDirectory;
 import Business.Restaurant.Restaurant;
 import Business.Restaurant.RestaurantDirectory;
 import Business.Role.Role;
@@ -25,9 +27,23 @@ public class EcoSystem extends Organization{
     private RestaurantDirectory restaurantDirectory = new RestaurantDirectory();
     private CustomerDirectory customerDirectory = new CustomerDirectory();
     private DeliveryManDirectory deliveryManDirectory = new DeliveryManDirectory();
+    private OrderDirectory orderDirectory = new OrderDirectory();
+
+    public OrderDirectory getOrderDirectory() {
+        return orderDirectory;
+    }
+
+    public void setOrderDirectory(OrderDirectory orderDirectory) {
+        this.orderDirectory = orderDirectory;
+    }
     
     public void addCustomer(Customer c){
         customerDirectory.addCustomer(c);
+    }
+    
+    
+    public void addDeliveryMan(DeliveryMan dd) {
+        deliveryManDirectory.addDeliveryMan(dd);
     }
     
     public void addCRestaurant(Restaurant r){
@@ -72,11 +88,13 @@ public class EcoSystem extends Organization{
         this.deliveryManDirectory = deliveryManDirectory;
     }
 
-    public EcoSystem(RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, DeliveryManDirectory deliveryManDirectory) {
+    public EcoSystem(RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, DeliveryManDirectory deliveryManDirectory, OrderDirectory orderDirectory) {
 
         this.restaurantDirectory = restaurantDirectory;
         this.customerDirectory = customerDirectory;
         this.deliveryManDirectory = deliveryManDirectory;
+        this.orderDirectory = orderDirectory;
+        
     }
     
     public Restaurant findRestaurant(String id) {
@@ -110,4 +128,15 @@ public class EcoSystem extends Organization{
        //
        return false;
     }
+
+
+    public void removeCustomer(String id) 
+             {
+        customerDirectory.removeCustomer(id);
+    }
+
+    public void removeDeliveryMan(String id) {
+        deliveryManDirectory.removeDeliveryMan(id);
+    }
+    
 }

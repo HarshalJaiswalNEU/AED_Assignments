@@ -7,7 +7,11 @@ package userinterface;
 import Business.Customer.Address;
 import Business.Customer.Customer;
 import Business.DB4OUtil.DB4OUtil;
+import Business.DeliveryMan.DeliveryMan;
 import Business.EcoSystem;
+import Business.Role.CustomerRole;
+import Business.Role.DeliverManRole;
+import static Business.Role.Role.RoleType.DeliveryMan;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -18,7 +22,7 @@ import javax.swing.SwingUtilities;
  * @author harshaljaiswal
  */
 public class SignUpDeliveryMan extends javax.swing.JPanel {
-    
+
     ImageIcon myImage;
 
     public ImageIcon setIcon(String m) {
@@ -35,9 +39,9 @@ public class SignUpDeliveryMan extends javax.swing.JPanel {
     /**
      * Creates new form SignUpDeliveryMan
      */
-   
     EcoSystem e;
     DB4OUtil dB4OUtil;
+
     public SignUpDeliveryMan(EcoSystem e, DB4OUtil dB4OUtil) {
         initComponents();
         labImg.setIcon(setIcon("/Users/harshaljaiswal/Downloads/db4odemo/deli.jpg"));
@@ -63,13 +67,11 @@ public class SignUpDeliveryMan extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         txtPass = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        txtPass1 = new javax.swing.JPasswordField();
         jLabel12 = new javax.swing.JLabel();
-        txtPass2 = new javax.swing.JPasswordField();
-        jLabel13 = new javax.swing.JLabel();
-        txtPass3 = new javax.swing.JPasswordField();
         jButton2 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        txtNo = new javax.swing.JTextField();
+        txtAcc = new javax.swing.JTextField();
 
         jButton1.setText("Sign Up");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -99,16 +101,26 @@ public class SignUpDeliveryMan extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel1.setText("Delivery Man Sign Up");
 
-        jLabel11.setText("Vehicle No:");
-
         jLabel12.setText("Acc No.:");
-
-        jLabel13.setText("Routing No.:");
 
         jButton2.setText("Back");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Contact No.:");
+
+        txtNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNoActionPerformed(evt);
+            }
+        });
+
+        txtAcc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAccActionPerformed(evt);
             }
         });
 
@@ -126,10 +138,9 @@ public class SignUpDeliveryMan extends javax.swing.JPanel {
                                 .addGap(57, 57, 57)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel11)
                                         .addComponent(jLabel4)
                                         .addComponent(jLabel12)
-                                        .addComponent(jLabel13))
+                                        .addComponent(jLabel5))
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(43, 43, 43)
@@ -141,9 +152,8 @@ public class SignUpDeliveryMan extends javax.swing.JPanel {
                                     .addComponent(txtFullName, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
                                     .addComponent(txtUsrName)
                                     .addComponent(txtPass)
-                                    .addComponent(txtPass1)
-                                    .addComponent(txtPass2)
-                                    .addComponent(txtPass3)))))
+                                    .addComponent(txtNo)
+                                    .addComponent(txtAcc)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(258, 258, 258)
                         .addComponent(jLabel1)))
@@ -160,37 +170,43 @@ public class SignUpDeliveryMan extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtUsrName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(txtPass1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(txtNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPass2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(txtPass3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel12)
+                    .addComponent(txtAcc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(232, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+
+        DeliveryMan d = new DeliveryMan(txtUsrName.getText(), txtPass.getText(), new DeliverManRole(), txtNo.getText(), txtFullName.getText(), txtAcc.getText());
         
+        e.addDeliveryMan(d);
+
+        dB4OUtil.storeSystem(e);
+
+        MainJFrame suc = new MainJFrame();
+        ((JFrame) SwingUtilities.getWindowAncestor(this)).dispose();
+        suc.setVisible(true);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtFullNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFullNameActionPerformed
@@ -208,23 +224,30 @@ public class SignUpDeliveryMan extends javax.swing.JPanel {
         suc.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void txtNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_txtNoActionPerformed
+
+    private void txtAccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAccActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAccActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel labImg;
+    private javax.swing.JTextField txtAcc;
     private javax.swing.JTextField txtFullName;
+    private javax.swing.JTextField txtNo;
     private javax.swing.JPasswordField txtPass;
-    private javax.swing.JPasswordField txtPass1;
-    private javax.swing.JPasswordField txtPass2;
-    private javax.swing.JPasswordField txtPass3;
     private javax.swing.JTextField txtUsrName;
     // End of variables declaration//GEN-END:variables
 }

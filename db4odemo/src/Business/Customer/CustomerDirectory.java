@@ -12,13 +12,14 @@ import java.util.ArrayList;
  * @author harold
  */
 public class CustomerDirectory {
-    ArrayList<Customer> customerList =new ArrayList<>();
-    
-    public CustomerDirectory(){
-        
+
+    ArrayList<Customer> customerList = new ArrayList<>();
+
+    public CustomerDirectory() {
+
     }
-    
-    public void addCustomer(Customer c){
+
+    public void addCustomer(Customer c) {
         customerList.add(c);
     }
 
@@ -29,6 +30,15 @@ public class CustomerDirectory {
     public void setCustomerList(ArrayList<Customer> customerList) {
         this.customerList = customerList;
     }
-    
-    
+
+    public void removeCustomer(String id) {
+        for (Customer v : customerList) {
+
+            if (v.getUsername().equals(id)) {
+                customerList.remove(v);
+                break;
+            }
+        }
+    }
+
 }

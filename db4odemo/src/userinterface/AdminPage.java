@@ -9,6 +9,7 @@ import Business.EcoSystem;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import userinterface.SystemAdminWorkArea.CustomerDetails;
+import userinterface.SystemAdminWorkArea.DeliveryManDetails;
 import userinterface.SystemAdminWorkArea.RestaurantDetails;
 
 /**
@@ -20,13 +21,13 @@ public class AdminPage extends javax.swing.JPanel {
     /**
      * Creates new form AdminPage
      */
-  
     EcoSystem e;
     DB4OUtil dB4OUtil;
+
     public AdminPage(EcoSystem e, DB4OUtil dB4OUtil) {
         initComponents();
         this.e = e;
-        this.dB4OUtil= dB4OUtil;
+        this.dB4OUtil = dB4OUtil;
     }
 
     /**
@@ -62,6 +63,11 @@ public class AdminPage extends javax.swing.JPanel {
         });
 
         jButton3.setText("Delivery Man");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Current Orders");
 
@@ -138,10 +144,10 @@ public class AdminPage extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-        CustomerDetails cd = new CustomerDetails(e);
+
+        CustomerDetails cd = new CustomerDetails(e, dB4OUtil);
         jSplitPane1.setRightComponent(cd);
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -155,8 +161,14 @@ public class AdminPage extends javax.swing.JPanel {
         // TODO add your handling code here:
         RestaurantDetails rd = new RestaurantDetails(e, dB4OUtil);
         jSplitPane1.setRightComponent(rd);
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        DeliveryManDetails dm = new DeliveryManDetails(e, dB4OUtil);
+        jSplitPane1.setRightComponent(dm);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

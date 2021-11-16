@@ -8,12 +8,14 @@ import Business.EcoSystem;
 import Business.DB4OUtil.DB4OUtil;
 
 import Business.Organization;
+import Business.Restaurant.Restaurant;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import userinterface.RestaurantAdminRole.RestaurantMainPage;
 
 /**
  *
@@ -177,11 +179,17 @@ public class MainJFrame extends javax.swing.JFrame {
 
         }
         if (Role.getSelectedItem().toString() == "Restaurant") {
-            SignUpRestaurant sur = new SignUpRestaurant(system, dB4OUtil);
-            this.setContentPane(sur);
-            this.invalidate();
-            this.validate();
-            return;
+            Restaurant r = system.loginResaturant(txtUsername.getText(), txtPassword.getText());
+
+            if (r == null) {
+                JOptionPane.showMessageDialog(this, "Incorrect credential");
+            } else {
+                RestaurantMainPage rmp = new RestaurantMainPage(system, dB4OUtil, r);
+                this.setContentPane(rmp);
+                this.invalidate();
+                this.validate();
+                return;
+            }
 
         }
 

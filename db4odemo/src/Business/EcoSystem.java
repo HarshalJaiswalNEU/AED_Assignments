@@ -61,6 +61,12 @@ public class EcoSystem extends Organization{
     public DeliveryManDirectory getDeliveryManDirectory() {
         return deliveryManDirectory;
     }
+    
+    public Restaurant loginResaturant(String usr, String pass) {
+       
+        return restaurantDirectory.loginResaturant(usr, pass);
+        
+    }
 
     public void setDeliveryManDirectory(DeliveryManDirectory deliveryManDirectory) {
         this.deliveryManDirectory = deliveryManDirectory;

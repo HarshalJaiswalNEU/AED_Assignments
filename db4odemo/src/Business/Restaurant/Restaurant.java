@@ -93,6 +93,10 @@ public class Restaurant extends UserAccount {
         this.menu = menu;
     }
 
+    public void removeHM(String key) {
+        hm.remove(key);
+    }
+
     
 
 }

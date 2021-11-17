@@ -8,6 +8,9 @@ import Business.DB4OUtil.DB4OUtil;
 import Business.DeliveryMan.DeliveryMan;
 import Business.EcoSystem;
 import Business.Restaurant.Restaurant;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import userinterface.MainJFrame;
 
 /**
  *
@@ -28,7 +31,6 @@ public class DeliverManMainPage extends javax.swing.JPanel {
         this.dB4OUtil = dB4OUtil;
         this.delivery = d;
     }
-   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -66,6 +68,11 @@ public class DeliverManMainPage extends javax.swing.JPanel {
         });
 
         jButton2.setText("Logout");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -111,9 +118,16 @@ public class DeliverManMainPage extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        DeliveryManOrderPage dmop = new DeliveryManOrderPage(e, dB4OUtil, delivery );
+        DeliveryManOrderPage dmop = new DeliveryManOrderPage(e, dB4OUtil, delivery);
         jSplitPane1.setRightComponent(dmop);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        MainJFrame suc = new MainJFrame();
+        ((JFrame) SwingUtilities.getWindowAncestor(this)).dispose();
+        suc.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

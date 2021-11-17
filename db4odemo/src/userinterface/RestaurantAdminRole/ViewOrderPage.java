@@ -153,8 +153,6 @@ public class ViewOrderPage extends javax.swing.JPanel {
         dB4OUtil.storeSystem(e);
         populateTable();
         populateTableDelivery();
-//        e.assignDeliveyMan(model.getColumnCount());
-//        e.removeRestaurant(model.getValueAt(selectedRow, 1).toString());
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

@@ -4,10 +4,13 @@
  */
 package userinterface.RestaurantAdminRole;
 
+import Business.Customer.Address;
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Restaurant.Menu;
 import Business.Restaurant.Restaurant;
+import Business.Role.CustomerRole;
+import java.util.HashMap;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -47,12 +50,6 @@ public class AddMenuPage extends javax.swing.JPanel {
         txtName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtPrice = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        txtUnit = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        txtType = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txtDesc = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
@@ -60,26 +57,20 @@ public class AddMenuPage extends javax.swing.JPanel {
 
         tb1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Name", "Price", "Unit", "Type", "Description"
+                "Item", "Price"
             }
         ));
         jScrollPane2.setViewportView(tb1);
 
-        jLabel2.setText("Name:");
+        jLabel2.setText("Item:");
 
         jLabel3.setText("Price:");
-
-        jLabel4.setText("Unit:");
-
-        jLabel5.setText("Type:");
-
-        jLabel6.setText("Description:");
 
         jButton1.setText("Add Item");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -102,8 +93,7 @@ public class AddMenuPage extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel5))
+                                .addComponent(jLabel3))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jButton1)
@@ -111,21 +101,9 @@ public class AddMenuPage extends javax.swing.JPanel {
                                         .addComponent(jLabel2)
                                         .addGap(52, 52, 52)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtType, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(jLabel4)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(txtUnit))
-                                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(txtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(125, 125, 125))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel6)
-                        .addGap(420, 420, 420)))
+                                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(125, 125, 125)))))
                 .addContainerGap(128, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -142,18 +120,8 @@ public class AddMenuPage extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtUnit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(70, 70, 70)
                 .addComponent(jButton1)
                 .addContainerGap(281, Short.MAX_VALUE))
         );
@@ -162,9 +130,7 @@ public class AddMenuPage extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
-        Menu mm = new Menu(txtName.getText(), Integer.valueOf(txtPrice.getText()), txtUnit.getText(), txtType.getText(), txtDesc.getText());
-       
-        restaurant.AddMenu(mm);
+        restaurant.addHM(txtName.getText(), Integer.valueOf(txtPrice.getText()));
         dB4OUtil.storeSystem(e);
 
         populateTable();
@@ -176,35 +142,39 @@ public class AddMenuPage extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tb1;
-    private javax.swing.JTextField txtDesc;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPrice;
-    private javax.swing.JTextField txtType;
-    private javax.swing.JTextField txtUnit;
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
         DefaultTableModel model = (DefaultTableModel) tb1.getModel();
         model.setRowCount(0);
-        
-            for (Menu c : restaurant.getMenu()) {
+
+        try {
+            for (String s : restaurant.getHm().keySet()) {
 
                 Object[] row = new Object[5];
-//                row[0] = c;
-                row[0] = c.getName();
-                row[1] = c.getPrice();
-                row[2] = c.getUnit();
-                row[3] = c.getType();
-                row[4] = c.getDescription();
+                row[0] = s;
+                row[1] = restaurant.getHm().get(s);
 
                 model.addRow(row);
             }
-        
+        } catch (Exception e) {
+            
+        }
 
+//        for (Menu c : restaurant.getMenu()) {
+//
+//            Object[] row = new Object[5];
+//            row[0] = c.getName();
+//            row[1] = c.getPrice();
+//            row[2] = c.getUnit();
+//            row[3] = c.getType();
+//            row[4] = c.getDescription();
+//
+//            model.addRow(row);
+//        }
     }
 }

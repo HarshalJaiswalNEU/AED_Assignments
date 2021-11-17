@@ -8,6 +8,7 @@ import Business.Customer.Address;
 import Business.Customer.Customer;
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
+import Business.Restaurant.Menu;
 import Business.Restaurant.Restaurant;
 import Business.Role.CustomerRole;
 import java.awt.Image;
@@ -314,9 +315,9 @@ public class SignUpRestaurant extends javax.swing.JPanel {
         // TODO add your handling code here:
         Address add =new Address(txtStreet.getText(), Integer.parseInt(txtAptNo.getText()), txtCity.getText(), txtState.getText(), Integer.parseInt(txtZip.getText()));
 
-//        Customer c =new Customer(txtUsrName.getText(), txtPass.getText(), new CustomerRole(), txtFullName.getText(), add);
-//        e.addCustomer(c);
         Restaurant r = new Restaurant(txtUsrName.getText(), txtPass.getText(), new CustomerRole(), txtNo.getText(), txtFullName.getText(), add);
+        Menu mm = new Menu("Pizza", 12, "1 medium", "fast food", "12 slices");
+        r.addMenu(mm);
         e.addCRestaurant(r);
         dB4OUtil.storeSystem(e);
         MainJFrame suc = new MainJFrame();

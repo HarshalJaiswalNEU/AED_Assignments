@@ -80,13 +80,13 @@ public class RestaurantDetails extends javax.swing.JPanel {
 
         tb2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Name", "Price", "Unit", "Type", "Description"
+                "Item", "Price"
             }
         ));
         jScrollPane2.setViewportView(tb2);
@@ -189,18 +189,31 @@ public class RestaurantDetails extends javax.swing.JPanel {
     private void populateTableMenu(Restaurant r) {
         DefaultTableModel model = (DefaultTableModel) tb2.getModel();
         model.setRowCount(0);
+        
+        try {
+            for (String s : r.getHm().keySet()) {
 
-        for (Menu m : r.getMenu()) {
+                Object[] row = new Object[5];
+                row[0] = s;
+                row[1] = r.getHm().get(s);
 
-            Object[] row = new Object[5];
-            row[0] = m.getName();
-            row[1] = m.getPrice();
-            row[2] = m.getUnit();
-            row[3] = m.getType();
-            row[4] = m.getDescription();
-
-            model.addRow(row);
+                model.addRow(row);
+            }
+        } catch (Exception e) {
+            
         }
+
+//        for (Menu m : r.getMenu()) {
+//
+//            Object[] row = new Object[5];
+//            row[0] = m.getName();
+//            row[1] = m.getPrice();
+//            row[2] = m.getUnit();
+//            row[3] = m.getType();
+//            row[4] = m.getDescription();
+//
+//            model.addRow(row);
+//        }
 
     }
 }

@@ -11,6 +11,7 @@ import Business.Customer.CustomerDirectory;
 import Business.DeliveryMan.DeliveryMan;
 import Business.DeliveryMan.DeliveryManDirectory;
 import Business.Orders.OrderDirectory;
+import Business.Orders.Orders;
 import Business.Restaurant.Restaurant;
 import Business.Restaurant.RestaurantDirectory;
 import Business.Role.Role;
@@ -137,6 +138,20 @@ public class EcoSystem extends Organization{
 
     public void removeDeliveryMan(String id) {
         deliveryManDirectory.removeDeliveryMan(id);
+    }
+
+    public Customer loginCustomer(String usr, String pass) {
+        return customerDirectory.loginCustomer(usr, pass);
+    }
+
+    public void addOrder(Orders o) {
+        try{
+            orderDirectory.addOrder(o);
+        }catch(Exception e){
+            orderDirectory = new OrderDirectory();
+            orderDirectory.addOrder(o);
+        }
+        
     }
     
 }

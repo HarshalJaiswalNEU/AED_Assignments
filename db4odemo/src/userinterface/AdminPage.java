@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import userinterface.SystemAdminWorkArea.CustomerDetails;
 import userinterface.SystemAdminWorkArea.DeliveryManDetails;
+import userinterface.SystemAdminWorkArea.OrderDetails;
 import userinterface.SystemAdminWorkArea.RestaurantDetails;
 
 /**
@@ -70,6 +71,11 @@ public class AdminPage extends javax.swing.JPanel {
         });
 
         jButton4.setText("Current Orders");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Logout");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -169,6 +175,12 @@ public class AdminPage extends javax.swing.JPanel {
         DeliveryManDetails dm = new DeliveryManDetails(e, dB4OUtil);
         jSplitPane1.setRightComponent(dm);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        OrderDetails od = new OrderDetails(e, dB4OUtil);
+        jSplitPane1.setRightComponent(od);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

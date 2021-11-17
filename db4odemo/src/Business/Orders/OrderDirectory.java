@@ -4,10 +4,36 @@
  */
 package Business.Orders;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author harshaljaiswal
  */
 public class OrderDirectory {
+    ArrayList<Orders> orderList = new ArrayList<>();
+    
+    public OrderDirectory(){
+        
+    }
+
+    public void addOrder(Orders o){
+        try{
+            orderList.add(o);
+        }catch(Exception e){
+            orderList = new ArrayList<>();
+            orderList.add(o);
+        }
+        
+    }
+    
+    public ArrayList<Orders> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(ArrayList<Orders> orderList) {
+        this.orderList = orderList;
+    }
+    
     
 }

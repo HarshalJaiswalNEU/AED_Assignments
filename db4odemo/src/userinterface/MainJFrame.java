@@ -4,6 +4,7 @@
  */
 package userinterface;
 
+import Business.Customer.Customer;
 import Business.EcoSystem;
 import Business.DB4OUtil.DB4OUtil;
 
@@ -15,6 +16,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import userinterface.CustomerRole.CustomerMainPage;
 import userinterface.RestaurantAdminRole.RestaurantMainPage;
 
 /**
@@ -171,11 +173,16 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         if (Role.getSelectedItem().toString() == "Customer") {
-            SignUpCustomer suc = new SignUpCustomer(system, dB4OUtil);
-            this.setContentPane(suc);
-            this.invalidate();
-            this.validate();
-            return;
+            Customer c = system.loginCustomer(txtUsername.getText(), txtPassword.getText());
+            if (c == null) {
+                JOptionPane.showMessageDialog(this, "Incorrect credential");
+            } else {
+                CustomerMainPage cmp = new CustomerMainPage(system, dB4OUtil, c);
+                this.setContentPane(cmp);
+                this.invalidate();
+                this.validate();
+                return;
+            }
 
         }
         if (Role.getSelectedItem().toString() == "Restaurant") {

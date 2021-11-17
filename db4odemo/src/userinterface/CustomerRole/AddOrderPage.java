@@ -2,12 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package userinterface.SystemAdminWorkArea;
+package userinterface.CustomerRole;
 
 import Business.Customer.Customer;
 import Business.DB4OUtil.DB4OUtil;
-import Business.DeliveryMan.DeliveryMan;
 import Business.EcoSystem;
+import Business.Orders.Orders;
+import Business.Restaurant.Restaurant;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,18 +16,21 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author harshaljaiswal
  */
-public class DeliveryManDetails extends javax.swing.JPanel {
+public class AddOrderPage extends javax.swing.JPanel {
 
     /**
-     * Creates new form DeliveryManDetails
+     * Creates new form AddOrderPage
      */
-    
     EcoSystem e;
     DB4OUtil dB4OUtil;
-    public DeliveryManDetails(EcoSystem e, DB4OUtil dB4OUtil) {
+    Customer customer;
+
+    public AddOrderPage(EcoSystem system, DB4OUtil dB4OUtil, Customer c) {
         initComponents();
-        this.e = e;
-        this.dB4OUtil =dB4OUtil;
+        this.e = system;
+        this.dB4OUtil = dB4OUtil;
+        this.customer = c;
+
         populateTable();
     }
 
@@ -39,59 +43,59 @@ public class DeliveryManDetails extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
-        jButton1.setText("Delete");
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel1.setText("Add Order Page");
+
+        tb1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Restaurant", "Item", "Price"
+            }
+        ));
+        jScrollPane1.setViewportView(tb1);
+
+        jButton1.setText("Place Order");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        tb1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Name", "UserName", "Contact No.", "Address"
-            }
-        ));
-        jScrollPane1.setViewportView(tb1);
-
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel1.setText("Delivery Man Details");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(278, 278, 278))
             .addGroup(layout.createSequentialGroup()
-                .addGap(121, 121, 121)
+                .addGap(279, 279, 279)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(149, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton1)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addGap(129, 129, 129))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
                 .addComponent(jLabel1)
-                .addGap(36, 36, 36)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
                 .addComponent(jButton1)
-                .addContainerGap(208, Short.MAX_VALUE))
+                .addContainerGap(327, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -100,11 +104,13 @@ public class DeliveryManDetails extends javax.swing.JPanel {
         int selectedRow = tb1.getSelectedRow();
 
         if (selectedRow < 0) {
-            JOptionPane.showMessageDialog(this, "Please Select a row to delete.");
+            JOptionPane.showMessageDialog(this, "Please Select a row to Add.");
             return;
         }
         DefaultTableModel model = (DefaultTableModel) tb1.getModel();
-        e.removeDeliveryMan(model.getValueAt(selectedRow, 1).toString());
+//        e.removeRestaurant(model.getValueAt(selectedRow, 1).toString());
+        Orders o = new Orders(model.getValueAt(selectedRow, 0).toString(), model.getValueAt(selectedRow, 1).toString(), Integer.valueOf(model.getValueAt(selectedRow, 2).toString()), customer.getUsername() );
+        e.addOrder( o);
         dB4OUtil.storeSystem(e);
         populateTable();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -121,17 +127,19 @@ public class DeliveryManDetails extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tb1.getModel();
         model.setRowCount(0);
 
-        for (DeliveryMan c : e.getDeliveryManDirectory().getDeliveryMans()) {
+        for (Restaurant r : e.getRestaurantDirectory().getRestaurents()) {
 
-            Object[] row = new Object[4];
-            row[0] = c.getName();
-            row[1] = c.getUsername();
-            row[2] = c.getContactNo();
-            row[3] = c.getAccNo();
+            for (String s : r.getHm().keySet()) {
+                Object[] row = new Object[4];
+                
+                row[0] = r.getName();
+                row[1] = s;
+                row[2] = r.getHm().get(s);
 
-            model.addRow(row);
+                model.addRow(row);
+            }
+
         }
 
-      
     }
 }

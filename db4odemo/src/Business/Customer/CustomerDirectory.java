@@ -5,6 +5,7 @@
  */
 package Business.Customer;
 
+import Business.Restaurant.Restaurant;
 import java.util.ArrayList;
 
 /**
@@ -39,6 +40,15 @@ public class CustomerDirectory {
                 break;
             }
         }
+    }
+
+    public Customer loginCustomer(String usr, String pass) {
+        for (Customer r : customerList) {
+            if (r.getUsername().equals(usr) && r.getPassword().equals(pass)) {
+                return r;
+            }
+        }
+        return null;
     }
 
 }

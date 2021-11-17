@@ -5,6 +5,7 @@
  */
 package Business.DeliveryMan;
 
+import Business.Customer.Customer;
 import java.util.ArrayList;
 
 /**
@@ -46,6 +47,15 @@ public class DeliveryManDirectory {
                 break;
             }
         }
+    }
+
+    public DeliveryMan loginDeliveryMan(String usr, String pass) {
+         for (DeliveryMan r : deliveryMans) {
+            if (r.getUsername().equals(usr) && r.getPassword().equals(pass)) {
+                return r;
+            }
+        }
+        return null;
     }
 
 }

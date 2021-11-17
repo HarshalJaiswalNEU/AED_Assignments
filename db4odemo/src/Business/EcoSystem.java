@@ -153,5 +153,9 @@ public class EcoSystem extends Organization{
         }
         
     }
+
+    public DeliveryMan loginDeliveryMan(String usr, String pass) {
+        return deliveryManDirectory.loginDeliveryMan(usr, pass);
+    }
     
 }

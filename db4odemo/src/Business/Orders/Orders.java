@@ -14,12 +14,47 @@ public class Orders {
    private String item;
    private int price;
    private String userName;
+   private String comment;
+   private String deliveryMan;
+   private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getDeliveryMan() {
+        try{
+            return deliveryMan;
+        }catch(Exception e){
+            deliveryMan = "";
+            return deliveryMan;
+        }
+        
+    }
+
+    public void setDeliveryMan(String deliveryMan) {
+        this.deliveryMan = deliveryMan;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
    
    public Orders(String r, String i, int p, String u){
        restaurantName = r;
        item = i;
        price = p;
        userName = u;
+       comment = "";
+       deliveryMan = "";
    }
 
     public String getRestaurantName() {

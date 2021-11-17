@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package userinterface.SystemAdminWorkArea;
+package userinterface.CustomerRole;
 
+import Business.Customer.Customer;
 import Business.DB4OUtil.DB4OUtil;
-import Business.DeliveryMan.DeliveryMan;
 import Business.EcoSystem;
 import Business.Orders.Orders;
 import javax.swing.table.DefaultTableModel;
@@ -14,18 +14,20 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author harshaljaiswal
  */
-public class OrderDetails extends javax.swing.JPanel {
+public class OrdersPage extends javax.swing.JPanel {
 
     /**
-     * Creates new form OrderDetails
+     * Creates new form OrdersPage
      */
     EcoSystem e;
     DB4OUtil dB4OUtil;
-    public OrderDetails(EcoSystem e, DB4OUtil dB4OUtil) {
+    Customer customer;
+
+    public OrdersPage(EcoSystem system, DB4OUtil dB4OUtil, Customer c) {
         initComponents();
-        this.e = e;
-        this.dB4OUtil =dB4OUtil;
-        populateTable();
+        this.e = system;
+        this.dB4OUtil = dB4OUtil;
+        this.customer = c;
     }
 
     /**
@@ -40,9 +42,11 @@ public class OrderDetails extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb1 = new javax.swing.JTable();
+        jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel1.setText("Order Details");
+        jLabel1.setText("Orders page");
 
         tb1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -52,10 +56,12 @@ public class OrderDetails extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Restaurant", "item", "price", "user", "deliveryMan", "status", "comment"
+                "Restaurant", "item", "price", "user", "deliveryMan", "status", "Comment"
             }
         ));
         jScrollPane1.setViewportView(tb1);
+
+        jButton1.setText("Add Comments");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -64,48 +70,60 @@ public class OrderDetails extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(271, 271, 271)
+                        .addGap(304, 304, 304)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(157, Short.MAX_VALUE))
+                        .addGap(145, 145, 145)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jScrollPane1)
+                                .addComponent(jTextField1)))))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jLabel1)
-                .addGap(44, 44, 44)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(339, Short.MAX_VALUE))
+                .addGap(51, 51, 51)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(338, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tb1;
     // End of variables declaration//GEN-END:variables
+
     private void populateTable() {
         DefaultTableModel model = (DefaultTableModel) tb1.getModel();
         model.setRowCount(0);
 
         for (Orders c : e.getOrderDirectory().getOrderList()) {
+            if (c.getUserName().equals(customer.getUsername())) {
+                
+                Object[] row = new Object[7];
+                row[0] = c.getRestaurantName();
+                row[1] = c.getItem();
+                row[2] = c.getPrice();
+                row[3] = c.getUserName();
+                row[4] = c.getDeliveryMan();
+                row[5] = c.getStatus();
+                row[6] = c.getComment();
 
-            Object[] row = new Object[7];
-            row[0] = c.getRestaurantName();
-            row[1] = c.getItem();
-            row[2] = c.getPrice();
-            row[3] = c.getUserName();
-            row[4] = c.getDeliveryMan();
-            row[5] = c.getStatus();
-            row[6] = c.getComment();
+                model.addRow(row);
+            }
 
-            model.addRow(row);
         }
-
-      
     }
 }

@@ -132,7 +132,8 @@ public class RestaurantMainPage extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
+        ViewOrderPage vop = new ViewOrderPage(e, dB4OUtil, restaurant);
+        jSplitPane1.setRightComponent(vop);
         
     }//GEN-LAST:event_jButton2ActionPerformed
 

@@ -73,6 +73,8 @@ public class SignUpDeliveryMan extends javax.swing.JPanel {
         txtNo = new javax.swing.JTextField();
         txtAcc = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(51, 204, 255));
+
         jButton1.setText("Sign Up");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

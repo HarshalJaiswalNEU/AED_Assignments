@@ -44,6 +44,8 @@ public class DeliveryManDetails extends javax.swing.JPanel {
         tb1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(51, 204, 255));
+
         jButton1.setText("Delete");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

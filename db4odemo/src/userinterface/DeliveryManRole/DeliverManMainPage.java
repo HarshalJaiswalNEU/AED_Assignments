@@ -47,6 +47,8 @@ public class DeliverManMainPage extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
+        jPanel1.setBackground(new java.awt.Color(51, 204, 255));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -59,6 +61,8 @@ public class DeliverManMainPage extends javax.swing.JPanel {
         );
 
         jSplitPane1.setRightComponent(jPanel1);
+
+        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
 
         jButton1.setText("Orders");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

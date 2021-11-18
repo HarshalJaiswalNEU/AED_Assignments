@@ -41,6 +41,8 @@ public class OrderDetails extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tb1 = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(51, 204, 255));
+
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel1.setText("Order Details");
 

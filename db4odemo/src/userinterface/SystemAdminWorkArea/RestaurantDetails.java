@@ -48,6 +48,8 @@ public class RestaurantDetails extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tb2 = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(0, 204, 255));
+
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel1.setText("Restaurant Details");
 

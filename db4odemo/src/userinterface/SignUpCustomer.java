@@ -78,6 +78,8 @@ public class SignUpCustomer extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         txtNo = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(51, 204, 255));
+
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel1.setText("Sign Up Customer");
 

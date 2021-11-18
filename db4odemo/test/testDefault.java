@@ -11,7 +11,7 @@ public class testDefault {
 
     @Before
     public void setup() {
-        dB4OUtil = DB4OUtil.getInstance();
+        dB4OUtil = DB4OUtil.getInstance(); 
         ecoSystem = dB4OUtil.retrieveSystem();
     }
 

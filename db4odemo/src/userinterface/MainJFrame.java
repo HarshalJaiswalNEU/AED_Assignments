@@ -76,6 +76,8 @@ public class MainJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel3.setBackground(new java.awt.Color(102, 204, 255));
+
         Role.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Customer", "Restaurant", "Delivery-Man","Admin"}));
         Role.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,7 +220,7 @@ public class MainJFrame extends javax.swing.JFrame {
         }
 
         if (Role.getSelectedItem().toString() == "Admin") {
-            if (txtUsername.getText().matches("a") && txtPassword.getText().matches("a")) {
+            if (txtUsername.getText().matches("admin") && txtPassword.getText().matches("admin")) {
                 AdminPage ap = new AdminPage(system, dB4OUtil);
                 this.setContentPane(ap);
                 this.invalidate();

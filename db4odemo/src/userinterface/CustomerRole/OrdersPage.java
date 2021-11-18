@@ -47,6 +47,8 @@ public class OrdersPage extends javax.swing.JPanel {
         txtComment = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(0, 204, 255));
+
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel1.setText("Orders page");
 
